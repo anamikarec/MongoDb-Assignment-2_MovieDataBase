@@ -18,7 +18,7 @@
 - 9. find all movies that were produced from 2000 to 2010.
 - 10. Sort all movies descending based on the production year and if the year is same then alphabetically for their movie_names
 - 11. in query 10 skip the first 10 entries and fetch the next 5
-- 12. remove movie genre from the first 10 movies in query 10.
+- 12. remove movie genre from all movies.
 
 ##### ```Answer```
 
