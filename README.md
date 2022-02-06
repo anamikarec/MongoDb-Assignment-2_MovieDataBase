@@ -19,3 +19,68 @@
 - 10. Sort all movies descending based on the production year and if the year is same then alphabetically for their movie_names
 - 11. in query 10 skip the first 10 entries and fetch the next 5
 - 12. remove movie genre from the first 10 movies in query 10.
+
+##### ```Answer```
+
+- 1. 
+```js
+    db.movies.find({movie_name : {$eq :"Spider-Man 3"}})
+```
+
+- 2. 
+```js
+   db.movies.find({movie_name : {$nin :["Spider-Man 3"]}}) 
+```
+
+- 3. 
+```js
+    db.movies.find({budget:{$gte : 16000}})
+```
+
+- 4. 
+```js
+    db.movies.find({budget:{$lte : 16000}})
+```
+
+- 5. 
+```js
+     db.movies.find({production_year:{$gt : 2000},budget:{$gt:10000}})
+```
+
+- 6. 
+```js
+    db.movies.find({$or : [{production_year:{$gt : 2000}},{budget:{$gt:10000}}]}) 
+```
+
+- 7. 
+```js
+     db.movies.find({$nor : [{production_year:{$gt : 2000}},{budget:{$gt:10000}}]})
+```
+
+- 8. 
+```js
+    db.movies.find({ $or: [{ production_year: { $nin: [2000] } }, { budget: { $nin: [10000] } }] }, { movie_name: 1, _id: 0, budget: 1, production_year: 1 }).limit(10)
+```
+
+- 9. 
+```js
+     db.movies.find({$and: [{production_year:{$gte:2000}},{production_year:{$lte:2010}}]},{production_year:1,_id:0})
+```
+
+- 10. 
+```js
+     db.movies.find().sort({production_year:-1, movies_name:1})
+```
+
+
+- 11. 
+```js
+    db.movies.find().sort({production_year:-1, movies_name:1}).skip(10).limit(5)
+```
+
+
+- 12. 
+```js
+     db.movies.updateMany({},{$unset:{movie_genre:""}}).limit(10)
+```
+
